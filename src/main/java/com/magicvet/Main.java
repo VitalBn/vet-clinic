@@ -27,51 +27,61 @@ public class Main {
     }
 
     static void registerNewClient() {
+
+        String firstName;
+        String lastName;
+        String email;
+
         System.out.println("Please provide client details.");
-        System.out.print("Email: ");
-        String email = SCANNER.nextLine();
-        if (isEmailValid(email)) {
+        do {
             System.out.print("First name: ");
-            String firstName = SCANNER.nextLine();
-            if (isNameValid(firstName)) {
-                System.out.print("Last name: ");
-                String lastName = SCANNER.nextLine();
-                if (isNameValid(lastName)) {
-                    Client client = buildClient(email, firstName, lastName);
-                    System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
-                } else {
-                    System.out.println("Provided last name is invalid.");
-                }
-            } else {
-                System.out.println("Provided first name is invalid.");
+            firstName = SCANNER.nextLine();
+            if (!isNameValid(firstName)) {
+                System.out.println("Provided first name is invalid. Try again.");
             }
-        } else {
-            System.out.println("Provided email is invalid.");
-        }
+        } while (!isNameValid(firstName));
+        do {
+            System.out.print("Last name: ");
+            lastName = SCANNER.nextLine();
+            if (!isNameValid(lastName)) {
+                System.out.println("Provided last name is invalid. Try again.");
+            }
+        } while (!isNameValid(lastName));
+        do {
+            System.out.print("Email: ");
+            email = SCANNER.nextLine();
+            if (isEmailValid(email)) {
+                System.out.println("Provided email is invalid. Try again.");
+            }
+        } while (!isEmailValid(email));
+
+        Client client = buildClient(firstName, lastName, email);
+        System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
+
     }
 
-    static Client buildClient(String email, String firstName, String lastName) {
+    static Client buildClient(String firstName, String lastName, String email) {
         Client client = new Client();
-
-        client.email = email;
 
         client.firstName = firstName;
 
         client.lastName = lastName;
 
+        client.email = email;
+
         return client;
-    }
-
-    static boolean isEmailValid(String email) {
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-
     }
 
     static boolean isNameValid(String name) {
         Pattern pattern = Pattern.compile(NAME_PATTERN);
         Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+
+    }
+
+    static boolean isEmailValid(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
         return matcher.matches();
 
     }
