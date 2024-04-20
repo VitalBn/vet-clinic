@@ -37,21 +37,27 @@ public class Main {
             System.out.print("First name: ");
             firstName = SCANNER.nextLine();
             if (!isNameValid(firstName)) {
-                System.out.println("Provided first name is invalid. Try again.");
+                System.out.println("Provided first name is invalid. Please try again.");
+            } else {
+                System.out.println("First name is accepted.");
             }
         } while (!isNameValid(firstName));
         do {
             System.out.print("Last name: ");
             lastName = SCANNER.nextLine();
             if (!isNameValid(lastName)) {
-                System.out.println("Provided last name is invalid. Try again.");
+                System.out.println("Provided last name is invalid. Please try again.");
+            } else {
+                System.out.println("Last name is accepted.");
             }
         } while (!isNameValid(lastName));
         do {
             System.out.print("Email: ");
             email = SCANNER.nextLine();
-            if (isEmailValid(email)) {
-                System.out.println("Provided email is invalid. Try again.");
+            if (!isEmailValid(email)) {
+                System.out.println("Provided email is invalid. Please try again.");
+            } else {
+                System.out.println("Email is accepted.");
             }
         } while (!isEmailValid(email));
 
