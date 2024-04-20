@@ -15,7 +15,7 @@ public class Main {
     static String NAME_PATTERN = "^[a-zA-Z-]{3,}$";
 
     public static void main(String[] args) {
-        run();
+        run(); //Just empty comment
     }
 
 
