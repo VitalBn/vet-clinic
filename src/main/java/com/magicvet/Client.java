@@ -1,4 +1,4 @@
-package main.java.com.magicvet;
+package com.magicvet;
 
 public class Client {
 
