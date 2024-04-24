@@ -14,7 +14,7 @@ public class PetService {
         System.out.print("Type (dog / cat / other): ");
         String type = Main.SCANNER.nextLine();
 
-        if (DOG_TYPE.equals(type)) {
+        if (DOG_TYPE.equals(type.toLowerCase())) {
             pet = buildDog();
         } else {
             pet = buildPet(type);
