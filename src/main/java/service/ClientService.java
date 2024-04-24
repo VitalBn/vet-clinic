@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class ClientService {
 
-    private static String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    private static String NAME_PATTERN = "^[a-zA-Z-]{3,}$";
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String NAME_PATTERN = "^[a-zA-Z-]{3,}$";
 
     public Client registerNewClient() {
 
@@ -23,28 +23,28 @@ public class ClientService {
         do {
             System.out.print("First name: ");
             firstName = Main.SCANNER.nextLine();
-            if (!isNameValid(firstName)) {
-                System.out.println("Provided first name is invalid. Please try again.");
-            } else {
+            if (isNameValid(firstName)) {
                 System.out.println("First name is accepted.");
+            } else {
+                System.out.println("Provided first name is invalid. Please try again.");
             }
         } while (!isNameValid(firstName));
         do {
             System.out.print("Last name: ");
             lastName = Main.SCANNER.nextLine();
-            if (!isNameValid(lastName)) {
-                System.out.println("Provided last name is invalid. Please try again.");
-            } else {
+            if (isNameValid(lastName)) {
                 System.out.println("Last name is accepted.");
+            } else {
+                System.out.println("Provided last name is invalid. Please try again.");
             }
         } while (!isNameValid(lastName));
         do {
             System.out.print("Email: ");
             email = Main.SCANNER.nextLine();
-            if (!isEmailValid(email)) {
-                System.out.println("Provided email is invalid. Please try again.");
-            } else {
+            if (isEmailValid(email)) {
                 System.out.println("Email is accepted.");
+            } else {
+                System.out.println("Provided email is invalid. Please try again.");
             }
         } while (!isEmailValid(email));
 

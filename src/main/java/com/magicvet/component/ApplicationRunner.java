@@ -8,15 +8,15 @@ import service.PetService;
 
 public class ApplicationRunner {
 
-    private ClientService clientService = new ClientService();
-    private PetService petService = new PetService();
+    private final ClientService clientService = new ClientService();
+    private final PetService petService = new PetService();
 
     public void run() {
         if (Authenticator.auth()) {
             Client client = clientService.registerNewClient();
 
             if (client != null) {
-                System.out.println("Would you like to register your pet? (Y/N)");
+                System.out.print("Would you like to register your pet? (Y/N): ");
                 String answer = Main.SCANNER.nextLine();
                 if (answer.toLowerCase().equals("y")) {
                     System.out.println("Adding a new pet.");
@@ -24,8 +24,9 @@ public class ApplicationRunner {
                     client.setPet(pet);
                     pet.setOwnerName(client.getFirstName() + " " + client.getLastName());
                     System.out.println("Pet has been added.");
+                    System.out.println(client);
                 } else {
-                    System.out.println("You can register your pet later. Good bye.");
+                    System.out.println("You can register your pet later. Goodbye.");
                 }
             }
         }
