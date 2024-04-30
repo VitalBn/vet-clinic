@@ -14,9 +14,9 @@ public class PetService {
         Pet pet = null;
 
         System.out.print("Type (dog / cat): ");
-        String type = Main.SCANNER.nextLine();
+        String type = Main.SCANNER.nextLine().toLowerCase();
 
-        if (DOG_TYPE.equals(type.toLowerCase()) || CAT_TYPE.equals(type.toLowerCase())) {
+        if (DOG_TYPE.equals(type) || CAT_TYPE.equals(type)) {
             pet = buildPet(type);
         } else {
             System.out.println("Unknown pet type: " + type);
@@ -39,8 +39,8 @@ public class PetService {
         pet.setSex(Main.SCANNER.nextLine());
 
         if (type.equals(DOG_TYPE)) {
-            System.out.print("Size (XS / S / M / L / XXL): ");
-            ((Dog) pet).setSize(Main.SCANNER.nextLine());
+            System.out.print("Size (XS / S / M / L / XL): ");
+            ((Dog) pet).setSize(Main.SCANNER.nextLine().toUpperCase());
         }
 
         return pet;

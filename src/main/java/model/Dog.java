@@ -8,7 +8,9 @@ public class Dog extends Pet {
     public static final String S = "S";
     public static final String M = "M";
     public static final String L = "L";
-    public static final String XXL = "XXL";
+    public static final String XL = "XL";
+
+    private String size;
 
     public Dog() {
 
@@ -17,8 +19,6 @@ public class Dog extends Pet {
     public Dog(String size) {
         this.size = size;
     }
-
-    private String size;
 
     @Override
     public String toString() {
