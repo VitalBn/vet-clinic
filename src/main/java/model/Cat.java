@@ -10,4 +10,10 @@ public class Cat extends Pet {
         this.setName(name);
         this.setAge(age);
     }
+
+    public Cat(String name, String age, Health health) {
+        this.setName(name);
+        this.setAge(age);
+        this.setHealth(health);
+    }
 }
