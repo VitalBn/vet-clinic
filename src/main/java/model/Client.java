@@ -1,13 +1,18 @@
 package model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Client {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm ");
 
     private String firstName;
     private String lastName;
     private String email;
     private Pet pet;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
     public String toString() {
@@ -16,6 +21,7 @@ public class Client {
                 + ", lastName = " + lastName
                 + ", email = " + email
                 + ",\n\tpet = " + pet
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "\n}";
     }
 
@@ -27,12 +33,13 @@ public class Client {
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(email, client.email)
-                && Objects.equals(pet, client.pet);
+                && Objects.equals(pet, client.pet)
+                && Objects.equals(registrationDate, client.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, pet);
+        return Objects.hash(firstName, lastName, email, pet, registrationDate);
     }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
@@ -61,6 +68,10 @@ public class Client {
 
     public Pet getPet() {
         return pet;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
     }
     
 }

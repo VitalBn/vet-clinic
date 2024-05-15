@@ -22,6 +22,8 @@ public class Dog extends Pet {
                 ", age = " + super.getAge()+
                 ", name = " + super.getName()+
                 ", size = " + size +
+                ", health = " +super.getHealth() +
+                ", registrationDate = " + super.getRegistrationDate().format(FORMATTER) +
                 ", ownerName= " + super.getOwnerName() +
                 "}";
 

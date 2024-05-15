@@ -1,6 +1,7 @@
 package com.magicvet;
 
 import model.Cat;
+import model.Client;
 import model.Dog;
 import model.Pet;
 
@@ -32,7 +33,7 @@ public class SandBox {
         }
 
         Cat[] cats = {
-                new Cat("Alisa", "5", Pet.Health.GOOD),
+                new Cat("Alisa", "5", Pet.Health.NORMAL),
                 new Cat("Melisa", "3", Pet.Health.BAD),
                 new Cat("Bob", "6", Pet.Health.SO_SO),
                 new Cat("Alex", "7", Pet.Health.EXCELLENT),
@@ -71,6 +72,9 @@ public class SandBox {
         for (Cat cat : cats) {
             System.out.println(cat.getName() + " has " + cat.getHealth() + " health.");
         }
+        System.out.println(new Cat());
+        System.out.println(new Dog());
+        System.out.println(new Client());
     }
 
 }

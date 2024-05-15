@@ -1,8 +1,12 @@
 package model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public abstract class Pet {
+
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     private String type;
     private String sex;
@@ -10,6 +14,7 @@ public abstract class Pet {
     private String name;
     private String ownerName;
     private Health health;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
     public String toString() {
@@ -18,6 +23,8 @@ public abstract class Pet {
                 ", sex = " + sex +
                 ", age = " + age +
                 ", name = " + name +
+                ", health = " + health +
+                ", registrationDate = " + registrationDate.format(FORMATTER) +
                 ", ownerName= " + ownerName +
                 "}";
     }
@@ -31,12 +38,14 @@ public abstract class Pet {
                 Objects.equals(sex, pet.sex) &&
                 Objects.equals(age, pet.age) &&
                 Objects.equals(name, pet.name) &&
+                Objects.equals(health, pet.health) &&
+                Objects.equals(registrationDate, pet.registrationDate) &&
                 Objects.equals(ownerName, pet.ownerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, sex, age, name, ownerName);
+        return Objects.hash(type, sex, age, name, health, registrationDate, ownerName);
     }
 
     public String getType() {
@@ -85,6 +94,10 @@ public abstract class Pet {
 
     public void setHealth(Health health) {
         this.health = health;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
     }
 
     public enum Health {
