@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Client {
@@ -11,7 +13,7 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
-    private Pet pet;
+    private List<Pet> pets = new ArrayList<>();
     private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
@@ -20,9 +22,9 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
-                + ",\n\tpet = " + pet
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
-                + "\n}";
+                + ",\n\tpets = " + petsOutPut()
+                + "\b}";
     }
 
     @Override
@@ -33,13 +35,13 @@ public class Client {
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(email, client.email)
-                && Objects.equals(pet, client.pet)
+                && Objects.equals(pets, client.pets)
                 && Objects.equals(registrationDate, client.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, pet, registrationDate);
+        return Objects.hash(firstName, lastName, email, pets, registrationDate);
     }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
@@ -62,16 +64,28 @@ public class Client {
         return email;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPet(List<Pet> pets) {
+        this.pets = pets;
     }
 
-    public Pet getPet() {
-        return pet;
+    public List<Pet> getPet() {
+        return pets;
+    }
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
     }
 
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
+    }
+
+    private String petsOutPut() {
+        String str = new String();
+        for(Pet pet: pets) {
+            str += pet.toString() + "\n\t\t\t";
+        }
+        return str;
     }
     
 }
