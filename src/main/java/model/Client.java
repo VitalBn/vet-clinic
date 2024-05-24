@@ -23,8 +23,8 @@ public class Client {
                 + ", lastName = " + lastName
                 + ", email = " + email
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
-                + ",\n\tpets = " + petsOutPut()
-                + "\b}";
+                + ",\n\tpets = " + petsToString()
+                + "}";
     }
 
     @Override
@@ -80,11 +80,12 @@ public class Client {
         return registrationDate;
     }
 
-    private String petsOutPut() {
+    private String petsToString() {
         String str = new String();
         for(Pet pet: pets) {
-            str += pet.toString() + "\n\t\t\t";
+            str += pet.toString() + "\n\t\t   ";
         }
+        str += "\b\b\b\b   ";
         return str;
     }
     
