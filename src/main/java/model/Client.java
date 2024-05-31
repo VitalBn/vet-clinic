@@ -15,6 +15,7 @@ public class Client {
     private String email;
     private List<Pet> pets = new ArrayList<>();
     private final LocalDateTime registrationDate = LocalDateTime.now();
+    private Location location;
 
     @Override
     public String toString() {
@@ -22,6 +23,7 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
+                + ", location = " + location
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + ",\n\tpets = " + petsToString()
                 + "}";
@@ -36,12 +38,13 @@ public class Client {
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(email, client.email)
                 && Objects.equals(pets, client.pets)
-                && Objects.equals(registrationDate, client.registrationDate);
+                && Objects.equals(registrationDate, client.registrationDate)
+                && Objects.equals(location, client.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, pets, registrationDate);
+        return Objects.hash(firstName, lastName, email, pets, registrationDate, location);
     }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
@@ -64,11 +67,11 @@ public class Client {
         return email;
     }
 
-    public void setPet(List<Pet> pets) {
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
 
-    public List<Pet> getPet() {
+    public List<Pet> getPets() {
         return pets;
     }
 
@@ -85,8 +88,20 @@ public class Client {
         for(Pet pet: pets) {
             str += pet.toString() + "\n\t\t   ";
         }
-        str += "\b\b\b\b   ";
+        str += "\r\t   ";
         return str;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public enum Location {
+        KYIV, LVIV, ODESA
     }
     
 }
