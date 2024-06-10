@@ -2,7 +2,6 @@ package service;
 
 import com.magicvet.Main;
 import model.Client;
-import model.Client.Location;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,24 +46,17 @@ public class ClientService {
             }
         } while (!isEmailValid(email));
 
-        do {
-            System.out.print("Location (Kyiv/Lviv/Odesa): ");
-            location = Main.SCANNER.nextLine();
-            if (isLocationValid(location)) {
-                System.out.println("Location is accepted.");
-            } else {
-                System.out.println("Provided location is invalid. Please try again.");
-            }
-        } while (!isLocationValid(location));
+        System.out.print("Location (Kyiv/Lviv/Odesa): ");
+        location = Main.SCANNER.nextLine();
 
-        client = buildClient(firstName, lastName, email, Location.valueOf(location.toUpperCase()));
+        client = buildClient(firstName, lastName, email, Client.Location.fromString(location));
         System.out.println("New client: " + client.getFirstName() + " " + client.getLastName()
                 + " (" + client.getEmail() + ") " + client.getLocation());
 
         return client;
     }
 
-    private static Client buildClient(String firstName, String lastName, String email, Location location) {
+    private static Client buildClient(String firstName, String lastName, String email, Client.Location location) {
         Client client = new Client();
 
         client.setFirstName(firstName);
@@ -82,23 +74,12 @@ public class ClientService {
         Pattern pattern = Pattern.compile(NAME_PATTERN);
         Matcher matcher = pattern.matcher(name);
         return matcher.matches();
-
     }
 
     private static boolean isEmailValid(String email) {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-
-    }
-
-    private static boolean isLocationValid(String location) {
-        for (Location loc : Location.values()) {
-            if (loc.name().equals(location.toUpperCase())) {
-                return true;
-            }
-        }
-        return false;
     }
 }
 

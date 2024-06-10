@@ -47,9 +47,13 @@ public class Client {
         return Objects.hash(firstName, lastName, email, pets, registrationDate, location);
     }
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getFirstName() { return firstName;}
+    public String getFirstName() {
+        return firstName;
+    }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -85,7 +89,7 @@ public class Client {
 
     private String petsToString() {
         String str = new String();
-        for(Pet pet: pets) {
+        for (Pet pet : pets) {
             str += pet.toString() + "\n\t\t   ";
         }
         str += "\r\t   ";
@@ -101,7 +105,17 @@ public class Client {
     }
 
     public enum Location {
-        KYIV, LVIV, ODESA
+        KYIV, LVIV, ODESA, UNKNOWN;
+
+        public static Location fromString(String value) {
+            for (Location loc : values()) {
+                if (loc.toString().equals(value.toUpperCase())) {
+                    System.out.println("Location is accepted.");
+                    return loc;
+                }
+            }
+            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+            return UNKNOWN;
+        }
     }
-    
 }

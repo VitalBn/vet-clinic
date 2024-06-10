@@ -7,7 +7,6 @@ public class Dog extends Pet {
     private Size size;
 
     public Dog() {
-
     }
 
     public Dog(Size size) {
@@ -17,14 +16,14 @@ public class Dog extends Pet {
     @Override
     public String toString() {
         return "Pet {" +
-                "type = " + super.getType() +
-                ", sex = " + super.getSex()+
-                ", age = " + super.getAge()+
-                ", name = " + super.getName()+
-                ", size = " + size +
-                ", health = " +super.getHealth() +
-                ", registrationDate = " + super.getRegistrationDate().format(FORMATTER) +
-                ", ownerName= " + super.getOwnerName() +
+                "type = " + getType() +
+                ", sex = " + getSex() +
+                ", age = " + getAge() +
+                ", name = " + getName() +
+                ", size = " + getSize() +
+                ", health = " + getHealth() +
+                ", registrationDate = " + getRegistrationDate().format(FORMATTER) +
+                ", ownerName= " + getOwnerName() +
                 "}";
 
     }
@@ -43,9 +42,13 @@ public class Dog extends Pet {
         return Objects.hash(super.hashCode(), size);
     }
 
-    public void setSize(Size size) { this.size = size; }
+    public void setSize(Size size) {
+        this.size = size;
+    }
 
-    public Size getSize() { return size; }
+    public Size getSize() {
+        return size;
+    }
 
     public enum Size {
 
@@ -64,6 +67,16 @@ public class Dog extends Pet {
 
         public int getValue() {
             return value;
+        }
+
+        public static Size fromString(String value) {
+            for (Size size : values()) {
+                if (size.toString().equals(value.toUpperCase())) {
+                    return size;
+                }
+            }
+            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+            return UNKNOWN;
         }
     }
 }
