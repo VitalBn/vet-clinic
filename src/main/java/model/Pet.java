@@ -118,5 +118,16 @@ public abstract class Pet {
         public int getValue() {
             return value;
         }
+
+        public static Pet.Health fromString(String value) {
+            for (Pet.Health health : values()) {
+                if (health.toString().equals(value.toUpperCase())) {
+                    return health;
+                }
+            }
+            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+            return UNKNOWN;
+        }
+
     }
 }
