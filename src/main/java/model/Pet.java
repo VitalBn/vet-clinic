@@ -119,8 +119,8 @@ public abstract class Pet {
             return value;
         }
 
-        public static Pet.Health fromString(String value) {
-            for (Pet.Health health : values()) {
+        public static Health fromString(String value) {
+            for (Health health : values()) {
                 if (health.toString().equals(value.toUpperCase())) {
                     return health;
                 }

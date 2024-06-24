@@ -40,6 +40,10 @@ public class PetService {
         System.out.print("Sex (male / female): ");
         pet.setSex(Main.SCANNER.nextLine());
 
+        System.out.print("Health rate (bad, so-so, normal, good, excellent): ");
+        String health = Main.SCANNER.nextLine();
+        pet.setHealth(Pet.Health.fromString(health));
+
         if (type.equals(DOG_TYPE)) {
             System.out.print("Size (XS / S / M / L / XL): ");
             String size = Main.SCANNER.nextLine();
