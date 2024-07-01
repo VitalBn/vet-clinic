@@ -22,8 +22,8 @@ public class EntityRegister {
 
         String message = "Do you want to register more clients? (y/n): ";
         do {
-            Optional<Client> client = addClient();
-            client.ifPresent(clients::add);
+            Client client = addClient();
+            clients.add(client);
         } while (verifyRepeating(message));
 
         Map<Client.Location, List<Client>> clientsByLocation = clients.stream()
@@ -43,9 +43,9 @@ public class EntityRegister {
     }
 
 
-    private Optional<Client> addClient() {
-        Optional<Client> client = clientService.registerNewClient();
-        client.ifPresent(this::registerPets);
+    private Client addClient() {
+        Client client = clientService.registerNewClient();
+        registerPets(client);
         return client;
     }
 
