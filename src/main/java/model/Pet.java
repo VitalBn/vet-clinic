@@ -121,7 +121,7 @@ public abstract class Pet {
 
         public static Health fromString(String value) {
             for (Health health : values()) {
-                if (health.toString().equals(value.toUpperCase())) {
+                if (Integer.toString(health.getValue()).equals(value)) {
                     return health;
                 }
             }

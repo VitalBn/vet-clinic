@@ -40,7 +40,7 @@ public class PetService {
         System.out.print("Sex (male / female): ");
         pet.setSex(Main.SCANNER.nextLine());
 
-        System.out.print("Health rate (bad, so_so, normal, good, excellent): ");
+        System.out.print("Health rate (bad - 1, so_so - 2, normal - 3, good - 4, excellent - 5): ");
         String health = Main.SCANNER.nextLine();
         pet.setHealth(Pet.Health.fromString(health));
 

@@ -1,5 +1,6 @@
 package com.magicvet.component;
 
+
 import com.magicvet.Main;
 
 public class Authenticator {
